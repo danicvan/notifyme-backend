@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './user.service';
-import { RegisterUserDto } from './dto/register-user.dto';
+import { LogService } from '../log/log.service';
+import axios from 'axios';
+
+jest.mock('axios');
+const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 class MockLogService {
-  saveLog = jest.fn().mockResolvedValue(undefined);
+  saveLog = jest.fn();
 }
-
-jest.mock('axios', () => ({
-  post: jest.fn().mockResolvedValue({ data: { id: 'mocked-email-id' } }),
-}));
 
 describe('UserService', () => {
   let service: UserService;
@@ -17,7 +17,7 @@ describe('UserService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         UserService,
-        { provide: 'LogService', useClass: MockLogService },
+        { provide: LogService, useClass: MockLogService },
       ],
     }).compile();
 
@@ -29,15 +29,19 @@ describe('UserService', () => {
   });
 
   it('should register user and return success message', async () => {
-    const dto: RegisterUserDto = {
-      name: 'John Doe',
-      email: 'john@example.com',
-    };
+    const dto = { name: 'John Doe', email: 'john@example.com' };
+
+    // Mockando o envio de e-mail
+    mockedAxios.post.mockResolvedValue({
+      data: { id: 'mocked-id' },
+    });
 
     const result = await service.register(dto);
 
     expect(result).toEqual({
       message: 'Usuário John Doe registrado com sucesso!',
     });
+
+    expect(mockedAxios.post).toHaveBeenCalled(); // opcional
   });
 });
