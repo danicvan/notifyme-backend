@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { Injectable } from '@nestjs/common';
 import { RegisterUserDto } from './dto/register-user.dto';
 
@@ -6,11 +8,21 @@ export class UserService {
   async register(dto: RegisterUserDto) {
     const { name, email } = dto;
 
-    // Simulação: aqui vai o envio de e-mail no futuro
-    console.log(`📩 Enviando e-mail de boas-vindas para ${email}...`);
-
-    // Simulação: aqui vai o envio de log para S3 depois
-    console.log(`🗂️ Gerando log de registro para ${name}`);
+    await axios.post(
+        'https://api.resend.com/emails',
+        {
+          from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
+          to: email,
+          subject: 'Boas-vindas ao NotifyMe!',
+          html: `<strong>Olá, ${name}!</strong><br/>Seja bem-vindo à plataforma de notificações inteligentes. 🚀`,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      );      
 
     return {
       message: `Usuário ${name} registrado com sucesso!`,
