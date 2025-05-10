@@ -7,6 +7,8 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { NotificationModule } from './notification/notification.module';
 
+import { LogService } from './log/log.service';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -16,6 +18,6 @@ import { NotificationModule } from './notification/notification.module';
     NotificationModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, LogService],
 })
 export class AppModule {}
