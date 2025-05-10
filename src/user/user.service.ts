@@ -7,6 +7,7 @@ import { RegisterUserDto } from './dto/register-user.dto';
 export class UserService {
   async register(dto: RegisterUserDto) {
     const { name, email } = dto;
+    console.log('🔐 API KEY:', process.env.RESEND_API_KEY);
 
     await axios.post(
         'https://api.resend.com/emails',
