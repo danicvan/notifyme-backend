@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module';
 import { NotificationModule } from './notification/notification.module';
 
 import { LogService } from './log/log.service';
+import { LogModule } from './log/log.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { LogService } from './log/log.service';
     }),
     UserModule,
     NotificationModule,
+    LogModule,
   ],
   controllers: [AppController],
   providers: [AppService, LogService],
