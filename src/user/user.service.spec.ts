@@ -11,6 +11,10 @@ class MockLogService {
 }
 
 describe('UserService', () => {
+  beforeAll(() => {
+    jest.spyOn(console, 'log').mockImplementation(() => {});
+  });
+  
   let service: UserService;
 
   beforeEach(async () => {
