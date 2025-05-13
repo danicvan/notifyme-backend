@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  tools {
+    nodejs 'node18' // ou o nome exato que configurou no Jenkins
+  }
+
   environment {
     NODE_ENV = 'test'
   }
@@ -14,6 +18,8 @@ pipeline {
 
     stage('Install Dependencies') {
       steps {
+        sh 'node -v'
+        sh 'npm -v'
         sh 'npm install'
       }
     }
@@ -29,12 +35,6 @@ pipeline {
         sh 'npm run build'
       }
     }
-
-    // stage('Deploy') {
-    //   steps {
-    //     sh './deploy.sh' // ou qualquer comando de deploy
-    //   }
-    // }
   }
 
   post {
