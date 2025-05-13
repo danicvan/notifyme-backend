@@ -5,26 +5,23 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Configurar versão e rota global
+  app.setGlobalPrefix('v1');
+
   const config = new DocumentBuilder()
     .setTitle('NotifyMe API')
-    .setDescription('Backend for managing user notifications and logs')
+    .setDescription('API for sending notifications and logging events.')
     .setVersion('1.0')
-    .addServer('/v1') // versionamento da API
+    .addTag('Users')
+    .addBearerAuth()
     .setContact('Daniel Camilo', 'https://github.com/danicvan', 'danicvan@hotmail.com')
-    .setExternalDoc('Documentação Oficial', 'https://notifyme.docs.com') // opcional
+    .setExternalDoc('GitHub Repository', 'https://github.com/danicvan/notifyme-backend')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-
-  SwaggerModule.setup('/v1/api', app, document, {
-    customSiteTitle: 'NotifyMe Docs',
-    customfavIcon: 'https://raw.githubusercontent.com/danicvan/assets/main/favicon.ico',
-    customCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
-    customCss: `
-      .topbar-wrapper img {content:url('https://raw.githubusercontent.com/danicvan/assets/main/logo.png'); height:40px;}
-    `,
-  });
+  SwaggerModule.setup('v1/api', app, document); // 👉 Agora acessível em /v1/api
 
   await app.listen(3000);
+  console.log(`🚀 API running at http://localhost:3000/v1/api`);
 }
 bootstrap();
