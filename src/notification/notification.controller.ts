@@ -1,17 +1,15 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { NotificationService } from './notification.service';
-import { SendNotificationDto } from './dto/send-notification.dto';
-import { ApiTags, ApiResponse } from '@nestjs/swagger';
+import { NotificationDto } from './dto/notification.dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Notifications')
+@ApiTags('Notification')
 @Controller('notification')
 export class NotificationController {
   constructor(private readonly notificationService: NotificationService) {}
 
-  @Post('send')
-  @ApiResponse({ status: 201, description: 'Notification sent successfully.' })
-  @ApiResponse({ status: 400, description: 'Bad Request.' })
-  send(@Body() dto: SendNotificationDto) {
+  @Post()
+  sendNotification(@Body() dto: NotificationDto) {
     return this.notificationService.send(dto);
   }
 }
