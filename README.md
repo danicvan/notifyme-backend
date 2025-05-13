@@ -1,98 +1,154 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 📬 NotifyMe Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+NotifyMe is a backend API built with **NestJS** that enables sending email notifications through a secure and extensible platform. The project was developed with the aim of providing a simple but powerful solution for systems that need to trigger transactional or scheduled email communications.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 🚀 Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- ✅ User registration with email logging
+- ✅ Email notification endpoint
+- ✅ Request logging saved to AWS S3
+- ✅ Integrated CI/CD with Jenkins
+- ✅ Full API documentation via Swagger
+- ✅ Modular architecture with DTO validation
+- ✅ Ready for deployment (Railway, Render, EC2)
 
-## Project setup
+---
 
-```bash
-$ npm install
+## 🔧 Tech Stack
+
+- **Node.js** (v20+)
+- **NestJS**
+- **TypeScript**
+- **AWS SDK** (S3)
+- **Jenkins CI/CD**
+- **Swagger**
+- **Jest** (unit testing)
+
+---
+
+## 📁 Project Structure
+
+```
+notifyme-backend/
+├── src/
+│   ├── user/              # User module (controller, service, DTO)
+│   ├── notification/      # Notification module
+│   ├── log/               # Logging module (writes to AWS S3)
+│   ├── common/            # Common guards and utils
+│   ├── main.ts            # Entry point
+│   └── app.module.ts      # Root module
+├── Jenkinsfile            # CI pipeline
+├── .env                   # Environment variables
+└── README.md
 ```
 
-## Compile and run the project
+---
 
-```bash
-# development
-$ npm run start
+## 🔐 Environment Variables
 
-# watch mode
-$ npm run start:dev
+Create a `.env` file with the following:
 
-# production mode
-$ npm run start:prod
+```env
+PORT=3000
+AWS_REGION=us-east-2
+AWS_ACCESS_KEY_ID=your_aws_access_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret
+S3_BUCKET_NAME=notifyme-logs-danicvan
 ```
 
-## Run tests
+---
+
+## 📦 Installation
 
 ```bash
-# unit tests
-$ npm run test
+# Clone the repo
+git clone https://github.com/danicvan/notifyme-backend.git
+cd notifyme-backend
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# Install dependencies
+npm install
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## 🧪 Running the App Locally
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Run in development mode
+npm run start:dev
+
+# Run tests
+npm run test
+
+# Run lint
+npm run lint
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## 🔍 Swagger API Docs
 
-Check out a few resources that may come in handy when working with NestJS:
+After starting the project locally, access:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```
+http://localhost:3000/v1/api
+```
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 🛡️ Authentication
 
-## Stay in touch
+All endpoints are protected with a **global Bearer token guard**.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Add the following to each request header:
 
-## License
+```
+Authorization: Bearer <your_token>
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+To disable or customize this, go to `JwtAuthGuard` in `common/guards`.
+
+---
+
+## 🚢 CI/CD with Jenkins
+
+1. Install Jenkins + NodeJS plugin
+2. Configure a Jenkins job with the included `Jenkinsfile`
+3. Steps: Checkout → Install Dependencies → Run Tests → Build
+
+---
+
+## ☁️ Deployment (suggestions)
+
+- [x] Railway (used currently)
+- [ ] Render
+- [ ] AWS EC2 + Nginx
+
+You can access the deployed API here:
+
+```
+https://notifyme-backend-production.up.railway.app
+```
+
+---
+
+## ✨ Future Improvements
+
+- [ ] Add rate limiting and throttling
+- [ ] Add database integration
+- [ ] Add retry logic for failed notifications
+- [ ] Admin panel and dashboards
+
+---
+
+## 👤 Author
+
+Made with ❤️ by **[Daniel Camilo Evangelista](https://github.com/danicvan)**
+
+---
+
+## 📄 License
+
+MIT License — feel free to use and modify this project.
