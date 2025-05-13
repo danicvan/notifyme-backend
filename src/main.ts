@@ -1,35 +1,30 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Aplica validações globais
+  app.useGlobalPipes(new ValidationPipe());
+
+  // Prefixo global da aplicação
   app.setGlobalPrefix('v1');
 
+  // Configuração do Swagger
   const config = new DocumentBuilder()
     .setTitle('NotifyMe API')
-    .setDescription('API for sending notifications and logging events.')
+    .setDescription('API for sending notifications and managing users.')
     .setVersion('1.0')
-    .addTag('Users')
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-        name: 'Authorization',
-        in: 'header',
-      },
-      'access-token', // esse nome será usado no Swagger para identificar o auth
-    )
-    .setContact('Daniel Camilo', 'https://github.com/danicvan', 'danicvan@hotmail.com')
-    .setExternalDoc('GitHub Repository', 'https://github.com/danicvan/notifyme-backend')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
+
+  // Documentação acessível em /v1/api
   SwaggerModule.setup('v1/api', app, document);
 
-  await app.listen(3000);
-  console.log(`🚀 API running at http://localhost:3000/v1/api`);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
