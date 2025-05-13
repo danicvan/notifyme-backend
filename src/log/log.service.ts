@@ -17,7 +17,7 @@ export class LogService {
     });
   }
 
-  async saveLog(content: Record<string, any>) {
+  async saveLog(content: Record<string, unknown>) {
     const bucket = process.env.S3_BUCKET_NAME!;
     const key = `logs/${Date.now()}-${crypto.randomUUID()}.json`;
 
