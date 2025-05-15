@@ -3,10 +3,6 @@
 
 **NotifyMe** is a modern, scalable, and test-driven backend service built with [NestJS](https://nestjs.com/) that allows users to register and send email notifications. This project integrates AWS S3 for log storage, supports CI/CD with Jenkins, and includes auto-generated Swagger documentation for API exploration.
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/placeholder/logo.png" alt="NotifyMe Logo" width="250" />
-</p>
-
 ---
 
 ## 🚀 Live Demo
