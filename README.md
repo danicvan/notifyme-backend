@@ -1,180 +1,91 @@
+# NotifyMe 📬
 
-# 📬 NotifyMe Backend
-
-**NotifyMe** is a modern, scalable, and test-driven backend service built with [NestJS](https://nestjs.com/) that allows users to register and send email notifications. This project integrates AWS S3 for log storage, supports CI/CD with Jenkins, and includes auto-generated Swagger documentation for API exploration.
-
----
-
-## 🚀 Live Demo
-
-🟢 **Production API**: [https://notifyme-backend-production.up.railway.app/v1/api](https://notifyme-backend-production.up.railway.app/v1/api)  
-🔒 All routes require a `Bearer Token` in the `Authorization` header.
+> English below 🇺🇸 | Português abaixo 🇧🇷
 
 ---
 
-## 📦 Tech Stack
+## 🇧🇷 Sobre o Projeto
 
-- **Framework:** [NestJS](https://nestjs.com/) (TypeScript)
-- **Email Service:** Custom Service Layer
-- **Cloud Storage:** AWS S3 (logs)
-- **CI/CD:** Jenkins + GitHub
-- **Testing:** Jest (unit tests)
-- **Documentation:** Swagger (OpenAPI 3)
-- **Deployment:** [Railway](https://railway.app/)
+**NotifyMe** é uma API robusta desenvolvida com [NestJS](https://nestjs.com/) que permite o envio de notificações por e-mail, registro de usuários e logging em nuvem via AWS S3. Este projeto simula uma aplicação real voltada a empresas que precisam disparar comunicações automáticas e organizadas com versionamento, autenticação e escalabilidade.
 
----
+### 🔧 Tecnologias Utilizadas
 
-## 📄 API Documentation
+- **Node.js** 20+
+- **NestJS** com TypeScript
+- **Jest** para testes automatizados
+- **Swagger** para documentação de API
+- **AWS S3** para armazenamento de logs
+- **Jenkins CI/CD** para automação de builds
+- **Railway** para deploy em nuvem
 
-✨ Swagger UI is enabled on:  
-📘 [`/v1/api`](https://notifyme-backend-production.up.railway.app/v1/api)
+### 📦 Funcionalidades
 
-Includes:
-- Auth headers with `Bearer Token`
-- API grouping via `@ApiTags`
-- DTO validation
-- Versioning (`v1`)
+- Registro de usuários com e-mail
+- Envio de notificações por e-mail (mock)
+- Armazenamento de logs de atividade no AWS S3
+- Autenticação via Bearer Token
+- Documentação interativa com Swagger
+- Pipeline automatizado com Jenkins
 
----
-
-## 🛠️ Setup Instructions
-
-### 1. Clone & Install
+### 🚀 Como executar localmente
 
 ```bash
-git clone https://github.com/danicvan/notifyme-backend.git
-cd notifyme-backend
+# Instale dependências
 npm install
-```
 
-### 2. Configure Environment
+# Configure variáveis de ambiente (.env)
+cp .env.example .env
 
-Create a `.env` file based on `.env.example`:
-
-```bash
-AWS_REGION=your-region
-AWS_ACCESS_KEY_ID=your-access-key
-AWS_SECRET_ACCESS_KEY=your-secret
-S3_BUCKET_NAME=your-bucket
-PORT=3000
-```
-
-### 3. Run Locally
-
-```bash
+# Execute o servidor
 npm run start:dev
-```
 
-Access Swagger at: `http://localhost:3000/v1/api`
+# Acesse a documentação:
+http://localhost:3000/v1/api
+```
 
 ---
 
-## 🧪 Run Tests
+## 🇺🇸 About the Project
+
+**NotifyMe** is a robust API built with [NestJS](https://nestjs.com/) that enables email notifications, user registration, and cloud logging via AWS S3. It's designed to simulate a real-world application with CI/CD, secure authentication, API versioning, and cloud deployment.
+
+### 🛠️ Tech Stack
+
+- **Node.js** 20+
+- **NestJS** with TypeScript
+- **Jest** for automated testing
+- **Swagger** for API documentation
+- **AWS S3** for logging
+- **Jenkins CI/CD** for automation
+- **Railway** for cloud deployment
+
+### ⚙️ Features
+
+- Register users with email
+- Send email notifications (mocked)
+- Save logs to AWS S3
+- Bearer token authentication
+- Interactive Swagger documentation
+- CI/CD pipeline with Jenkins
+
+### ▶️ How to run locally
 
 ```bash
-npm run test
-```
+# Install dependencies
+npm install
 
-To lint and auto-fix code:
+# Setup environment variables
+cp .env.example .env
 
-```bash
-npm run lint
-```
+# Run the dev server
+npm run start:dev
 
----
-
-## ⚙️ CI/CD Pipeline (Jenkins)
-
-The project is integrated with a Jenkins pipeline using a `Jenkinsfile` in the root:
-
-- 🧩 Installs dependencies
-- ✅ Runs tests
-- 🛠️ Builds the project
-- 🚀 Can deploy to Railway/Render/EC2
-
-Example `Jenkinsfile` stages:
-```groovy
-pipeline {
-  agent any
-  tools {
-    nodejs 'node18'
-  }
-  stages {
-    stage('Install') {
-      steps { sh 'npm install' }
-    }
-    stage('Test') {
-      steps { sh 'npm run test' }
-    }
-    stage('Build') {
-      steps { sh 'npm run build' }
-    }
-  }
-}
+# Access API Docs:
+http://localhost:3000/v1/api
 ```
 
 ---
 
-## ☁️ Deployment
+## ✍️ Author
 
-This project is deployed using [Railway](https://railway.app/):
-
-- 🚀 Automatic build and deploy from GitHub
-- 🔐 `.env` variables managed through Railway dashboard
-- 🖥️ Single-click rollback
-
-To redeploy, just push to the branch connected to Railway.
-
----
-
-## 🔐 Authentication
-
-All endpoints require a **JWT Bearer Token**.  
-Make sure to send it in your requests:
-
-```http
-Authorization: Bearer <your_token_here>
-```
-
-In Swagger, click on `Authorize` to enter your token.
-
----
-
-## 📁 Project Structure
-
-```
-src/
-├── user/              # User controller, service, DTOs
-├── notification/      # Email controller, service, DTOs
-├── log/               # Log service (S3 integration)
-├── common/            # Shared guards and utilities
-└── main.ts            # App bootstrap and Swagger config
-```
-
----
-
-## 📌 Features
-
-- [x] User Registration
-- [x] Send Notification Emails
-- [x] Swagger Documentation with Tags
-- [x] JWT Global Guard
-- [x] CI/CD with Jenkins
-- [x] AWS S3 Logging
-- [x] Environment-Based Configuration
-- [x] Full Test Coverage with Jest
-- [ ] Rate Limiting (Coming soon)
-- [ ] OAuth2 Integration (Coming soon)
-
----
-
-## 👨‍💻 Author
-
-**Daniel Camilo Evangelista**  
-🔗 [GitHub](https://github.com/danicvan) • [LinkedIn](https://linkedin.com/in/seu-perfil)
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
+Made with 💛 by [Daniel Camilo Evangelista](https://github.com/danicvan)
