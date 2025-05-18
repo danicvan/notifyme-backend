@@ -1,91 +1,128 @@
-# NotifyMe 📬
+# NotifyMe Backend API
 
-> English below 🇺🇸 | Português abaixo 🇧🇷
+[![Build](https://img.shields.io/badge/build-passing-brightgreen)]()
+[![Deploy](https://img.shields.io/badge/deploy-Railway-blue)]()
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow)](./LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/danicvan/notifyme-backend)](https://github.com/danicvan/notifyme-backend)
 
 ---
 
-## 🇧🇷 Sobre o Projeto
+## 🌐 English Version
 
-**NotifyMe** é uma API robusta desenvolvida com [NestJS](https://nestjs.com/) que permite o envio de notificações por e-mail, registro de usuários e logging em nuvem via AWS S3. Este projeto simula uma aplicação real voltada a empresas que precisam disparar comunicações automáticas e organizadas com versionamento, autenticação e escalabilidade.
+NotifyMe is a robust, scalable and easy-to-use backend built with **NestJS**. It offers an endpoint for sending notifications and user registration, with complete Swagger documentation, JWT authentication and logs saved directly to **AWS S3**.
 
-### 🔧 Tecnologias Utilizadas
+### 🚀 Live API: [https://notifyme-backend-production.up.railway.app/v1/api](https://notifyme-backend-production.up.railway.app/v1/api)
 
-- **Node.js** 20+
-- **NestJS** com TypeScript
-- **Jest** para testes automatizados
-- **Swagger** para documentação de API
-- **AWS S3** para armazenamento de logs
-- **Jenkins CI/CD** para automação de builds
-- **Railway** para deploy em nuvem
+---
 
-### 📦 Funcionalidades
+### 📌 Features
 
-- Registro de usuários com e-mail
-- Envio de notificações por e-mail (mock)
-- Armazenamento de logs de atividade no AWS S3
-- Autenticação via Bearer Token
-- Documentação interativa com Swagger
-- Pipeline automatizado com Jenkins
+- ✅ **NestJS with TypeScript**
+- 🔒 JWT-based **Authentication** (Bearer Token)
+- 📦 **Swagger** documentation with customization (logo, version, contact)
+- 🌐 Hosted on **Railway**
+- ☁️ Log saving to **AWS S3**
+- 🧪 CI via **Jenkins** (optional: GitHub Actions ready)
 
-### 🚀 Como executar localmente
+---
 
-```bash
-# Instale dependências
-npm install
+### 📂 Folder Structure
 
-# Configure variáveis de ambiente (.env)
-cp .env.example .env
-
-# Execute o servidor
-npm run start:dev
-
-# Acesse a documentação:
-http://localhost:3000/v1/api
+```
+src/
+├── app.controller.ts
+├── app.module.ts
+├── app.service.ts
+├── user/
+│   └── user.controller.ts
+│   └── user.service.ts
+├── notification/
+│   └── notification.controller.ts
+│   └── notification.service.ts
+├── log/
+│   └── log.service.ts
+├── common/
+│   └── guards/jwt-auth.guard.ts
 ```
 
 ---
 
-## 🇺🇸 About the Project
+### 🛠️ Requirements
 
-**NotifyMe** is a robust API built with [NestJS](https://nestjs.com/) that enables email notifications, user registration, and cloud logging via AWS S3. It's designed to simulate a real-world application with CI/CD, secure authentication, API versioning, and cloud deployment.
+- Node.js 20+
+- AWS S3 credentials
+- Railway account (or Render/EC2)
 
-### 🛠️ Tech Stack
+---
 
-- **Node.js** 20+
-- **NestJS** with TypeScript
-- **Jest** for automated testing
-- **Swagger** for API documentation
-- **AWS S3** for logging
-- **Jenkins CI/CD** for automation
-- **Railway** for cloud deployment
-
-### ⚙️ Features
-
-- Register users with email
-- Send email notifications (mocked)
-- Save logs to AWS S3
-- Bearer token authentication
-- Interactive Swagger documentation
-- CI/CD pipeline with Jenkins
-
-### ▶️ How to run locally
+### ▶️ Local Setup
 
 ```bash
-# Install dependencies
+git clone https://github.com/danicvan/notifyme-backend.git
+cd notifyme-backend
 npm install
-
-# Setup environment variables
-cp .env.example .env
-
-# Run the dev server
 npm run start:dev
+```
 
-# Access API Docs:
-http://localhost:3000/v1/api
+Access: [http://localhost:3000/v1/api](http://localhost:3000/v1/api)
+
+---
+
+### 🧪 Run Tests & Lint
+
+```bash
+npm run test
+npm run lint
 ```
 
 ---
 
-## ✍️ Author
+### 📦 Environment Variables (`.env`)
 
-Made with 💛 by [Daniel Camilo Evangelista](https://github.com/danicvan)
+```env
+PORT=3000
+AWS_ACCESS_KEY_ID=your_key
+AWS_SECRET_ACCESS_KEY=your_secret
+AWS_REGION=us-east-2
+S3_BUCKET_NAME=notifyme-logs-danicvan
+```
+
+---
+
+## 🌎 Versão em Português
+
+NotifyMe é uma API backend construída com **NestJS** para registro de usuários e envio de notificações. Com documentação completa via Swagger, autenticação JWT e integração com AWS S3 para salvar logs.
+
+### 📌 Funcionalidades
+
+- ✅ **NestJS + TypeScript**
+- 🔐 Autenticação JWT (Bearer Token)
+- 📘 Swagger customizado com logo e versão
+- ☁️ Logs salvos automaticamente na **AWS S3**
+- 🚀 Deploy na Railway (alternativa: Render ou EC2)
+
+---
+
+### ▶️ Como rodar localmente
+
+```bash
+git clone https://github.com/danicvan/notifyme-backend.git
+cd notifyme-backend
+npm install
+npm run start:dev
+```
+
+Acesse: [http://localhost:3000/v1/api](http://localhost:3000/v1/api)
+
+---
+
+### 📃 Licença
+
+Este projeto está sob a licença **MIT**. Veja mais em [LICENSE](./LICENSE).
+
+---
+
+## ❤️ Autor
+
+**Daniel Camilo Evangelista**  
+[GitHub](https://github.com/danicvan) · [LinkedIn](https://linkedin.com/in/danicvan)
