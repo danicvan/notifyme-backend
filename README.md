@@ -1,3 +1,6 @@
+![CI](https://github.com/danicvan/notifyme-backend/actions/workflows/ci.yml/badge.svg)
+![CI Status](https://github.com/danicvan/notifyme-backend/actions/workflows/ci.yml/badge.svg)
+
 # NotifyMe Backend API
 
 [![Build](https://img.shields.io/badge/build-passing-brightgreen)]()
